@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import Link from 'next/link';
 
 export default function LoginPage() {
   const router = useRouter();
@@ -50,34 +49,32 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col overflow-x-hidden selection:bg-primary/20 selection:text-primary bg-background-light font-display text-text-main antialiased">
+    <div className="bg-background-light font-display text-text-main antialiased min-h-screen flex flex-col overflow-x-hidden selection:bg-primary/20 selection:text-primary">
       <header className="w-full flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 bg-white px-6 lg:px-10 py-3 z-20 shadow-sm">
         <div className="flex items-center gap-4 text-slate-800">
           <div className="size-6 text-primary">
             <svg className="w-full h-full text-current" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-              <path d="M24 4C25.7818 14.2173 33.7827 22.2182 44 24C33.7827 25.7818 25.7818 33.7827 24 44C22.2182 33.7827 14.2173 25.7818 4 24C14.2173 22.2182 22.2182 14.2173 24 4Z" fill="currentColor" />
+              <path d="M24 4C25.7818 14.2173 33.7827 22.2182 44 24C33.7827 25.7818 25.7818 33.7827 24 44C22.2182 33.7827 14.2173 25.7818 4 24C14.2173 22.2182 22.2182 14.2173 24 4Z" fill="currentColor"></path>
             </svg>
           </div>
           <h2 className="text-slate-900 text-lg font-bold leading-tight tracking-[-0.015em]">混合式教学平台</h2>
         </div>
         <div className="flex items-center gap-4">
           <span className="text-slate-500 text-sm hidden sm:block">还没有账号？</span>
-          <Link href="/register">
-            <button className="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-9 px-4 bg-primary/10 border border-primary/20 text-primary hover:bg-primary hover:text-white transition-all text-sm font-bold leading-normal tracking-[0.015em]">
-              <span className="truncate">注册</span>
-            </button>
-          </Link>
+          <button className="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-9 px-4 bg-primary/10 border border-primary/20 text-primary hover:bg-primary hover:text-white transition-all text-sm font-bold leading-normal tracking-[0.015em]">
+            <span className="truncate">注册</span>
+          </button>
         </div>
       </header>
       <main className="flex-1 flex items-center justify-center p-4 relative w-full bg-slate-50">
         <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-slate-50 to-white" />
-          <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(#2563eb_1px,transparent_1px)] [background-size:20px_20px]" />
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-slate-50 to-white"></div>
+          <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(#2563eb_1px,transparent_1px)] [background-size:20px_20px]" data-alt="Subtle dot matrix pattern background"></div>
         </div>
         <div className="relative z-10 w-full max-w-5xl bg-white border border-slate-200 rounded-2xl shadow-xl shadow-slate-200/50 flex flex-col md:flex-row overflow-hidden min-h-[600px]">
           <div className="hidden md:flex md:w-5/12 relative flex-col justify-between p-10 bg-gradient-to-br from-primary to-blue-600">
-            <div className="absolute inset-0 opacity-20 mix-blend-overlay bg-cover bg-center" style={{backgroundImage: "url('https://lh3.googleusercontent.com/aida-public/AB6AXuC35MpWeCYUCfiKlXgiSns-3PBlBGawvPxGg3zeoL2mUSPdxBs6CRAq7yQ-jyow14DPso5W2wtzv934eF7H1PDIfEYA7-JKW_W4plsjf3juAxyhhb2Q7gyfLycZ2HDcHv0V4mPkYrBNS1ZiyGceb2_o8qfQoEadxrUpZ5cElWt4neyeCnS-aNMufx7jOapGhzVJpam5bQdE_29BX1PS-ctkJTyq32o_qD-feLgc92KzX_uOPJpvAdj4IHPZMMRaf8GSuzSGfOgl_yk')"}} />
-            <div className="absolute inset-0 bg-gradient-to-b from-blue-600/50 via-transparent to-blue-900/60" />
+            <div className="absolute inset-0 opacity-20 mix-blend-overlay bg-cover bg-center" style={{backgroundImage: "url('https://lh3.googleusercontent.com/aida-public/AB6AXuC35MpWeCYUCfiKlXgiSns-3PBlBGawvPxGg3zeoL2mUSPdxBs6CRAq7yQ-jyow14DPso5W2wtzv934eF7H1PDIfEYA7-JKW_W4plsjf3juAxyhhb2Q7gyfLycZ2HDcHv0V4mPkYrBNS1ZiyGceb2_o8qfQoEadxrUpZ5cElWt4neyeCnS-aNMufx7jOapGhzVJpam5bQdE_29BX1PS-ctkJTyq32o_qD-feLgc92KzX_uOPJpvAdj4IHPZMMRaf8GSuzSGfOgl_yk')"}}></div>
+            <div className="absolute inset-0 bg-gradient-to-b from-blue-600/50 via-transparent to-blue-900/60"></div>
             <div className="relative z-10">
               <div className="w-12 h-12 rounded-lg bg-white/20 backdrop-blur-sm flex items-center justify-center text-white mb-6 border border-white/20 shadow-lg">
                 <span className="material-symbols-outlined text-2xl">auto_awesome</span>
@@ -167,7 +164,7 @@ export default function LoginPage() {
               </form>
               <div className="relative mt-8">
                 <div className="absolute inset-0 flex items-center">
-                  <div className="w-full border-t border-slate-200" />
+                  <div className="w-full border-t border-slate-200"></div>
                 </div>
                 <div className="relative flex justify-center text-sm">
                   <span className="px-2 bg-white text-slate-400">或通过以下方式登录</span>
