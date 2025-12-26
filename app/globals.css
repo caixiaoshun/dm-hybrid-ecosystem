@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Noto+Sans:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  font-family: 'Inter', 'Noto Sans', sans-serif;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+.custom-checkbox:checked {
+  background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuDYnjutHZwKpJNnMcl7QJRia8JElIn1fV0uRZ1a22re_URtSkmGwPOHtsF62ZdICoGSaZ5Yyt16aedS_wsOygf_cNKkZFC7VgQvCyJZ55TRW6UtN5SLfjuWYVQCzFX1COOBvKAQeHD2P8pJUZs86bvDwMSULO0e_DlJ37u54qEWTi0kCARh8X3nGDJXgG5-vn_nXwLQKbdb3KdwNZQo2QGP_UafuundvMBnecYukKkv8IyiBJZGoqVJZLAjR9lmqZ3S98C9iNv2zz0);
+}
+
+.message-anim {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.mask-linear {
+  mask-image: linear-gradient(to right, black 85%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, black 85%, transparent 100%);
+}
