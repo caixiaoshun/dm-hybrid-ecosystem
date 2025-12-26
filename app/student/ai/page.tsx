@@ -22,6 +22,7 @@ export default function AIAssistantPage() {
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -30,6 +31,14 @@ export default function AIAssistantPage() {
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
+
+  // Auto-resize textarea
+  useEffect(() => {
+    if (textareaRef.current) {
+      textareaRef.current.style.height = 'auto';
+      textareaRef.current.style.height = textareaRef.current.scrollHeight + 'px';
+    }
+  }, [input]);
 
   const handleSend = async () => {
     if (!input.trim() || loading) return;
@@ -252,14 +261,13 @@ export default function AIAssistantPage() {
                 <span className="material-symbols-outlined text-[24px]">add_circle</span>
               </button>
               <textarea
+                ref={textareaRef}
                 className="w-full bg-transparent border-none focus:ring-0 text-text-main placeholder-text-secondary resize-none py-3 max-h-32 text-base"
                 placeholder="询问关于课程的问题，上传文档，或请求数据分析..."
                 rows={1}
                 value={input}
                 onChange={(e) => {
                   setInput(e.target.value);
-                  e.target.style.height = 'auto';
-                  e.target.style.height = e.target.scrollHeight + 'px';
                 }}
                 onKeyPress={(e) => {
                   if (e.key === 'Enter' && !e.shiftKey) {
