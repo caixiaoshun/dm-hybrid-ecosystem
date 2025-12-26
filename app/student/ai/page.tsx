@@ -22,6 +22,7 @@ export default function AIAssistantPage() {
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -30,6 +31,14 @@ export default function AIAssistantPage() {
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
+
+  // Auto-resize textarea
+  useEffect(() => {
+    if (textareaRef.current) {
+      textareaRef.current.style.height = 'auto';
+      textareaRef.current.style.height = textareaRef.current.scrollHeight + 'px';
+    }
+  }, [input]);
 
   const handleSend = async () => {
     if (!input.trim() || loading) return;
@@ -129,6 +138,16 @@ export default function AIAssistantPage() {
             </button>
           </div>
         </div>
+        <div className="p-4 border-t border-border-light bg-surface-white">
+          <button className="flex items-center gap-3 w-full p-2 rounded-lg hover:bg-surface-active transition-colors text-left">
+            <img className="size-9 rounded-full bg-gray-100 object-cover border border-border-light" alt="User profile avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOtobzhl8DFCXeY99cv9qtjPzd5Sh-2Re48L7aTRidY1cyba3nXSU4hrBHi_mWOdkqD9FyFQKil0tzWU0OoO804pdg5kLO4NtY7plr7r-eItq6umwdUe8aZp1uA0__a2paOpGKbphWnV2s90IK6IPEyMdChrBFX9LaHSYEeeZkUz5IPSaXC3mD4DVYCG8NecXYbHBSQ3qoQ6CHof1Iy0Ws9JswEhozvqDPsCXk79_h5W9olmMWFil3fPdjXo5GOltRO1zjV3QTeKQ" />
+            <div className="flex-1 min-w-0">
+              <p className="text-sm font-medium text-text-main">学生账号</p>
+              <p className="text-xs text-text-secondary">在线</p>
+            </div>
+            <span className="material-symbols-outlined text-text-secondary text-[20px]">settings</span>
+          </button>
+        </div>
       </aside>
 
       {/* Main Chat Area */}
@@ -225,14 +244,31 @@ export default function AIAssistantPage() {
         </div>
 
         {/* Input Area */}
-        <div className="flex-shrink-0 border-t border-border-light p-4 sm:p-6 bg-surface-white/80 backdrop-blur-md">
-          <div className="max-w-3xl mx-auto flex gap-3">
-            <div className="flex-1 flex items-center gap-3 bg-white border border-border-light rounded-2xl p-2 focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/20 transition-all shadow-sm">
-              <input
-                className="flex-1 bg-transparent border-none focus:ring-0 focus:outline-none text-text-main placeholder-text-secondary px-3 text-base"
-                placeholder="输入消息..."
+        <div className="p-4 sm:p-6 bg-background-main relative z-20">
+          <div className="max-w-4xl mx-auto relative">
+            <div className="absolute -top-12 left-0 flex gap-2 overflow-x-auto w-full pb-2 mask-linear">
+              <button className="flex-shrink-0 px-3 py-1.5 bg-surface-white hover:bg-surface-active border border-border-light rounded-lg text-xs text-text-secondary hover:text-primary transition-colors flex items-center gap-2 shadow-sm backdrop-blur-sm">
+                <span className="material-symbols-outlined text-[16px] text-primary">lightbulb</span>
+                解释行为数据图表？
+              </button>
+              <button className="flex-shrink-0 px-3 py-1.5 bg-surface-white hover:bg-surface-active border border-border-light rounded-lg text-xs text-text-secondary hover:text-primary transition-colors flex items-center gap-2 shadow-sm backdrop-blur-sm">
+                <span className="material-symbols-outlined text-[16px] text-purple-500">quiz</span>
+                生成练习题
+              </button>
+            </div>
+            <div className="relative flex items-end gap-2 bg-surface-white p-2 rounded-xl ring-1 ring-border-light focus-within:ring-primary shadow-xl shadow-blue-900/5 transition-shadow">
+              <button className="p-2 text-text-secondary hover:text-primary hover:bg-surface-active rounded-lg transition-colors flex-shrink-0">
+                <span className="material-symbols-outlined text-[24px]">add_circle</span>
+              </button>
+              <textarea
+                ref={textareaRef}
+                className="w-full bg-transparent border-none focus:ring-0 text-text-main placeholder-text-secondary resize-none py-3 max-h-32 text-base"
+                placeholder="询问关于课程的问题，上传文档，或请求数据分析..."
+                rows={1}
                 value={input}
-                onChange={(e) => setInput(e.target.value)}
+                onChange={(e) => {
+                  setInput(e.target.value);
+                }}
                 onKeyPress={(e) => {
                   if (e.key === 'Enter' && !e.shiftKey) {
                     e.preventDefault();
@@ -241,18 +277,20 @@ export default function AIAssistantPage() {
                 }}
                 disabled={loading}
               />
-              <button className="p-2 text-text-secondary hover:text-primary transition-colors">
-                <span className="material-symbols-outlined text-[20px]">attach_file</span>
+              <button className="p-2 text-text-secondary hover:text-primary hover:bg-surface-active rounded-lg transition-colors flex-shrink-0">
+                <span className="material-symbols-outlined text-[24px]">mic</span>
+              </button>
+              <button
+                onClick={handleSend}
+                disabled={!input.trim() || loading}
+                className="p-2 bg-primary hover:bg-primary-hover text-white rounded-lg transition-colors flex-shrink-0 shadow-lg shadow-primary/20"
+              >
+                <span className="material-symbols-outlined text-[20px] translate-x-0.5">send</span>
               </button>
             </div>
-            <button
-              onClick={handleSend}
-              disabled={!input.trim() || loading}
-              className="flex items-center justify-center gap-2 px-6 py-3 rounded-2xl bg-primary hover:bg-primary-dark text-white font-bold transition-all shadow-lg shadow-primary/30 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-primary"
-            >
-              <span className="material-symbols-outlined text-[20px]">send</span>
-              <span className="hidden sm:inline">发送</span>
-            </button>
+            <p className="text-center text-[11px] text-text-secondary mt-3 opacity-80">
+              AI 可能会犯错。请核对重要信息。
+            </p>
           </div>
         </div>
       </main>
