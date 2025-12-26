@@ -37,11 +37,11 @@ export default function LoginPage() {
         return;
       }
 
-      // Redirect based on role
+      // Redirect based on role - use window.location for full page reload to pick up cookie
       if (data.user.role === 'student') {
-        router.push('/student/course');
+        window.location.href = '/student/course';
       } else if (data.user.role === 'teacher') {
-        router.push('/teacher/behavior');
+        window.location.href = '/teacher/behavior';
       }
     } catch (err) {
       setError('网络错误，请稍后重试');
