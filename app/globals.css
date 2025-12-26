@@ -1,9 +1,32 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Noto+Sans:wght@400;500;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap');
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  /* Custom colors */
+  --color-primary: #2563eb;
+  --color-primary-dark: #1d4ed8;
+  --color-primary-hover: #1d4ed8;
+  --color-background-light: #f8fafc;
+  --color-background-main: #f0f4fa;
+  --color-background-card: #ffffff;
+  --color-page-bg: #f0f6ff;
+  --color-surface-light: #ffffff;
+  --color-surface-white: #ffffff;
+  --color-surface-hover: #f8fafc;
+  --color-surface-active: #eff6ff;
+  --color-text-main: #1e293b;
+  --color-text-secondary: #64748b;
+  --color-border-color: #e2e8f0;
+  --color-border-light: #e2e8f0;
+  --color-input-bg: #f1f5f9;
+  --color-accent-blue: #eff6ff;
+
+  /* Font families */
+  --font-family-display: "Inter", "Noto Sans", sans-serif;
+  --font-family-body: "Inter", "Noto Sans", sans-serif;
+}
 
 * {
   margin: 0;

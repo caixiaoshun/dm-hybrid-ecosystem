@@ -37,11 +37,11 @@ export default function LoginPage() {
         return;
       }
 
-      // Redirect based on role
+      // Redirect based on role - use window.location for full page reload to pick up cookie
       if (data.user.role === 'student') {
-        router.push('/student/course');
+        window.location.href = '/student/course';
       } else if (data.user.role === 'teacher') {
-        router.push('/teacher/behavior');
+        window.location.href = '/teacher/behavior';
       }
     } catch (err) {
       setError('网络错误，请稍后重试');
@@ -76,6 +76,7 @@ export default function LoginPage() {
         </div>
         <div className="relative z-10 w-full max-w-5xl bg-white border border-slate-200 rounded-2xl shadow-xl shadow-slate-200/50 flex flex-col md:flex-row overflow-hidden min-h-[600px]">
           <div className="hidden md:flex md:w-5/12 relative flex-col justify-between p-10 bg-gradient-to-br from-primary to-blue-600">
+            <div className="absolute inset-0 opacity-20 mix-blend-overlay bg-cover bg-center" style={{backgroundImage: "url('https://lh3.googleusercontent.com/aida-public/AB6AXuC35MpWeCYUCfiKlXgiSns-3PBlBGawvPxGg3zeoL2mUSPdxBs6CRAq7yQ-jyow14DPso5W2wtzv934eF7H1PDIfEYA7-JKW_W4plsjf3juAxyhhb2Q7gyfLycZ2HDcHv0V4mPkYrBNS1ZiyGceb2_o8qfQoEadxrUpZ5cElWt4neyeCnS-aNMufx7jOapGhzVJpam5bQdE_29BX1PS-ctkJTyq32o_qD-feLgc92KzX_uOPJpvAdj4IHPZMMRaf8GSuzSGfOgl_yk')"}} />
             <div className="absolute inset-0 bg-gradient-to-b from-blue-600/50 via-transparent to-blue-900/60" />
             <div className="relative z-10">
               <div className="w-12 h-12 rounded-lg bg-white/20 backdrop-blur-sm flex items-center justify-center text-white mb-6 border border-white/20 shadow-lg">
@@ -88,6 +89,11 @@ export default function LoginPage() {
             </div>
             <div className="relative z-10">
               <div className="flex items-center gap-3 mb-2">
+                <div className="flex -space-x-3">
+                  <img alt="User Avatar" className="w-8 h-8 rounded-full border-2 border-white shadow-sm" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD7oq1dgU3q7IOwxwCFXpM6F8uLCh8UJ-ZBZiiPt1RBMuPB4SsEonO43dp500SnAbaHPRXNPyx8aAHvhO-ZJRVzv2YPYU6Yqda2Tt17IYrXTSbwdy3t6CYQGu-hr5TTAzo27d36mR_8rrXzkj3P5eUmGxMVu97vK7FFjaM6OCBp3z_qaFbTaTQGTob7qdAkmD4io1TnNLAXHjmsneobUKeditGx30Hh1xR5Cbn11UadQPtD_-xNq138s0YN8rSXpFPHAKZ76REnkx4" />
+                  <img alt="User Avatar" className="w-8 h-8 rounded-full border-2 border-white shadow-sm" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDquwaay6KAJKAl0JLKbT-L7ngEEzDRIGdGXuAF7TTkZeMVrQ8fKRD8TNXO6wqUWJ8wQzCkBKey5EyLK8z4aLIHUjuWH361Zm1DXnPPXJrZPNmN4OFrcl_WavqL8yDBfG1kJccUPhTfRm83D7rfel5JGM17j8pxz-94OXj-oUP8_l43T1p3_QWmZ_GUjcgacLbdK5GG6gBax1HAI-ncBQs4qB0syYuBKL_62DkgVz1YWVStgx1DxP8cWX3uPPRtV2jE58dgikH0F4w" />
+                  <img alt="User Avatar" className="w-8 h-8 rounded-full border-2 border-white shadow-sm" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbaXIDJjEB8o3zhJIO3HMojZr3xr_QcvNygVjpfUbpKWEInrq01yQIfXL6E2lv41J6pIy8svbMjuwydfeowFeNBA3b_Yxl-VdShKib9ZkKs7wJSR-dJXdfWuznXqSlinngl6vuqLLtNufaab7KQS0_48QROEmgUSYNeT8WwLXZd6b8GGhrFPKS3jNW-M9anhoGmEJhlfQgPJqV8sXPHCBpU3Q7KiSseXlUDJZ4y3gzOTyHszwvZ9fTUDhMifNPAWA2-OxMvJ1yY50" />
+                </div>
                 <div className="text-xs text-blue-100">
                   <span className="text-white font-bold">5,000+</span> 师生正在使用
                 </div>
@@ -107,11 +113,11 @@ export default function LoginPage() {
               )}
               <form onSubmit={handleSubmit} className="flex flex-col gap-5">
                 <div className="flex flex-col gap-2">
-                  <label className="text-slate-700 text-base font-medium leading-normal">学号</label>
+                  <label className="text-slate-700 text-base font-medium leading-normal">用户名或邮箱</label>
                   <div className="flex w-full flex-1 items-stretch rounded-lg group focus-within:ring-2 focus-within:ring-primary/20 focus-within:border-primary transition-all shadow-sm">
                     <input
                       className="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-l-lg text-slate-900 focus:outline-0 focus:ring-0 border border-slate-300 bg-white border-r-0 h-12 px-4 placeholder:text-slate-400 text-base font-normal leading-normal transition-colors"
-                      placeholder="请输入学号"
+                      placeholder="user@example.com"
                       value={formData.studentId}
                       onChange={(e) => setFormData({ ...formData, studentId: e.target.value })}
                       required
@@ -159,6 +165,24 @@ export default function LoginPage() {
                   <span className="truncate">{loading ? '登录中...' : '立即登录'}</span>
                 </button>
               </form>
+              <div className="relative mt-8">
+                <div className="absolute inset-0 flex items-center">
+                  <div className="w-full border-t border-slate-200" />
+                </div>
+                <div className="relative flex justify-center text-sm">
+                  <span className="px-2 bg-white text-slate-400">或通过以下方式登录</span>
+                </div>
+              </div>
+              <div className="mt-6 grid grid-cols-2 gap-3">
+                <button className="flex items-center justify-center gap-2 h-10 rounded-lg border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 hover:border-slate-300 transition-colors shadow-sm">
+                  <span className="material-symbols-outlined text-[20px] text-primary">school</span>
+                  <span className="text-sm font-medium">校园统一认证</span>
+                </button>
+                <button className="flex items-center justify-center gap-2 h-10 rounded-lg border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 hover:border-slate-300 transition-colors shadow-sm">
+                  <span className="material-symbols-outlined text-[20px] text-green-600">qr_code_scanner</span>
+                  <span className="text-sm font-medium">微信扫码</span>
+                </button>
+              </div>
             </div>
           </div>
         </div>
