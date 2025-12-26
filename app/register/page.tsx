@@ -73,7 +73,7 @@ export default function RegisterPage() {
   };
 
   return (
-    <body className="bg-gradient-to-br from-blue-50 via-white to-blue-50 text-slate-900 min-h-screen flex flex-col selection:bg-primary/10 selection:text-primary">
+    <div className="bg-gradient-to-br from-blue-50 via-white to-blue-50 text-slate-900 min-h-screen flex flex-col selection:bg-primary/10 selection:text-primary">
       <header className="w-full border-b border-blue-100/50 bg-white/70 backdrop-blur-md sticky top-0 z-50 px-6 py-4 lg:px-12 flex items-center justify-between">
         <div className="flex items-center gap-3 text-primary">
           <div className="size-8 text-primary">
@@ -237,6 +237,6 @@ export default function RegisterPage() {
           </div>
         </div>
       </div>
-    </body>
+    </div>
   );
 }
