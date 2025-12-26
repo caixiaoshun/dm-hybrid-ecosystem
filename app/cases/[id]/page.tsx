@@ -10,6 +10,7 @@ export default async function CaseDetailPage({ params }: { params: Promise<{ id:
     const mockCase = mockCases.find(c => c.id === id) || mockCases[0];
     caseItem = {
       ...mockCase,
+      imageUrl: null,
       content: `
         <h2>案例背景</h2>
         <p>本案例展示了如何在真实业务场景中应用数据挖掘技术...</p>
